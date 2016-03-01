@@ -1,11 +1,14 @@
 package dubinin.kickstarter.User;
 import com.sun.istack.internal.NotNull;
+import dubinin.DAO.Factory;
 import dubinin.kickstarter.Post.Post;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -41,22 +44,22 @@ public class User {
     @NotNull
     private String email;
 
-    @JoinColumn(name = "role")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Roles role;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private  Roles role;
 
     @Column(name = "registration_date")
     @Temporal(TemporalType.DATE)
     private Calendar registrationDate;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private ArrayList<Post> post = new ArrayList<Post>();
+    private List<Post> post = new ArrayList<Post>();
 
     public User(){
 
     }
 
-    public ArrayList<Post> getPost() {
+    public List<Post> getPost() {
         return post;
     }
 
@@ -156,9 +159,11 @@ public class User {
         //остальные поля заполнятся из базы
     }
 
-    public void addPost()
+    public void addPost() throws SQLException
     {
-        post.add(new Post());
+        Post p = new Post();
+        Factory.getInstance().getPostDAO().addPost(p);
+        post.add(p);
     }
 
     public void showAllPosts(){

@@ -26,7 +26,7 @@ public class Post {
     @Column(name = "category")
     private String category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kickstarter")
     private User user;
 
