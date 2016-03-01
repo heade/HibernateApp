@@ -3,6 +3,7 @@ package dubinin.kickstarter.Menu;
 import dubinin.kickstarter.User.ControlPanel;
 import dubinin.kickstarter.User.User;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -16,7 +17,7 @@ public class ClientWork extends Menu {
         this.user = user;
     }
 
-    public void work(){
+    public void work()throws SQLException{
 
         System.out.println("<---------- User Menu ---------->");
         System.out.println("1. Control Panel");
@@ -41,7 +42,7 @@ public class ClientWork extends Menu {
         }
     }
 
-    public void controllPanel(){
+    public void controllPanel()throws SQLException{
         int key;
         System.out.println("<------ Personal data ------>");
         user.showUserData();
@@ -71,13 +72,13 @@ public class ClientWork extends Menu {
         }
     }
 
-    public void createPost(){
+    public void createPost()throws SQLException{
         user.addPost();
         System.out.println("Post is created");
         work();
     }
 
-    public void showAllPosts(){
+    public void showAllPosts()throws SQLException{
         user.showAllPosts();
         work();
     }

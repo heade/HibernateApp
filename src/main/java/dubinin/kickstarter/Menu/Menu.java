@@ -1,7 +1,9 @@
 package dubinin.kickstarter.Menu;
+import dubinin.DAO.Factory;
 import dubinin.kickstarter.User.Roles;
 import dubinin.kickstarter.User.User;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -16,7 +18,7 @@ public class Menu {
 
     }
 
-    public void run(){
+    public void run()throws SQLException{
 
         System.out.println("<---------- Menu ---------->");
         System.out.println("1. Login");
@@ -38,7 +40,7 @@ public class Menu {
         }
     }
 
-    public void login(){
+    public void login()throws SQLException{
 
         user = new User();
         user.login();
@@ -46,11 +48,12 @@ public class Menu {
         run();
     }
 
-    public void registration(){
+    public void registration()throws SQLException{
 
         user = new User();
         user.registration();
         System.out.println("Registration is success");
+        Factory.getInstance().getUserDAO().addUser(user);
         if (user.getRole() == Roles.ROLE_CLIENT)
             new ClientWork(user).work();
         else if (user.getRole() == Roles.ROLE_USER)
