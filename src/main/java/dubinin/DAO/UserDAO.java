@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserDAO {
     void addUser(User user) throws SQLException;
     void updateUser(User user) throws SQLException;
-    User getUserById(Long id) throws SQLException;
+    User getUserByLogin(String login) throws SQLException;
     List getAllUsers() throws SQLException;
     void deleteUser(User user) throws SQLException;
 }

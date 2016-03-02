@@ -4,7 +4,7 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/postgres</property>
-        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.username">heade</property>
         <property name="hibernate.connection.password">arvinser</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
         <property name="hibernate.show_sql">true</property>

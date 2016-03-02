@@ -13,6 +13,8 @@ public class Menu {
 
     private User user;
     private int key;
+    private String login ="";
+    private String password="";
     private Scanner in = new Scanner(System.in);
     public Menu(){
 
@@ -42,20 +44,33 @@ public class Menu {
 
     public void login()throws SQLException{
 
-        user = new User();
-        user.login();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Login: ");
+        login = input.nextLine();
+        System.out.println("Password: ");
+        password = input.nextLine();
+
+        User u = Factory.getInstance().getUserDAO().getUserByLogin(login);
+        if (u.getPassword().equals(password))
+            user = u;
+
         System.out.println("Login is success");
-        run();
+
+        if (u.getRole() == Roles.ROLE_CLIENT)
+           new ClientWork(user).work();
+        else if (u.getRole() == Roles.ROLE_USER)
+            new UserWork(user).work();
     }
 
     public void registration()throws SQLException{
 
         user = new User();
         user.registration();
-        System.out.println("Registration is success");
         Factory.getInstance().getUserDAO().addUser(user);
+        System.out.println("Registration is success");
+
         if (user.getRole() == Roles.ROLE_CLIENT)
-            new ClientWork(user).work();
+           new ClientWork(user).work();
         else if (user.getRole() == Roles.ROLE_USER)
             new UserWork(user).work();
 

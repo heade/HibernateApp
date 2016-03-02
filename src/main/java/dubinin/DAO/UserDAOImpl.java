@@ -43,12 +43,12 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-    public User getUserById(Long id) throws SQLException {
+    public User getUserByLogin(String login) throws SQLException {
         Session session = null;
         User user = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
-            user = (User)session.load(User.class, id);
+            user = (User)session.load(User.class, login);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
         } finally{
@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
             session = HibernateUtil.getSessionFactory().openSession();
             users = session.createCriteria(User.class).list();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "пїЅпїЅпїЅпїЅпїЅпїЅ I/O", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

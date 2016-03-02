@@ -40,6 +40,9 @@ public class Post {
     private String text;
 
     public Post() {
+
+    }
+    public void createPost(){
         Scanner in = new Scanner(System.in);
 
         System.out.println("Title: ");

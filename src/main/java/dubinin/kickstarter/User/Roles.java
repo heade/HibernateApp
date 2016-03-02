@@ -20,7 +20,6 @@ public enum Roles implements Serializable {
 
     }
 
-
     public String getRole() {
         return role;
     }

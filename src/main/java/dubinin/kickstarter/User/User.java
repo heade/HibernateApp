@@ -149,19 +149,10 @@ public class User {
         role = (key==1) ? Roles.ROLE_USER: Roles.ROLE_CLIENT;
     }
 
-    public void login(){
-        Scanner in = new Scanner(System.in);
-        System.out.println("Login: ");
-        login = in.nextLine();
-        System.out.println("Password: ");
-        password = in.nextLine();
-        //password = System.console().readPassword();
-        //остальные поля заполнятся из базы
-    }
-
     public void addPost() throws SQLException
     {
         Post p = new Post();
+        p.createPost();
         Factory.getInstance().getPostDAO().addPost(p);
         post.add(p);
     }
@@ -177,7 +168,5 @@ public class User {
         System.out.println("Email: " + email);
         System.out.println("Role: " + role.getRole());
     }
-
-    //сеттеры для изменения личных данных
 
 }

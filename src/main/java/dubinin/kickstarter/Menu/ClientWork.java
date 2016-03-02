@@ -1,23 +1,27 @@
 package dubinin.kickstarter.Menu;
 
+import dubinin.DAO.Factory;
+import dubinin.kickstarter.Post.Post;
 import dubinin.kickstarter.User.ControlPanel;
 import dubinin.kickstarter.User.User;
+import dubinin.kickstarter.show.Show;
 
+import java.awt.*;
 import java.sql.SQLException;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by Daniel on 29.02.2016.
  */
 public class ClientWork extends Menu {
-    private User user;
-    private int key;
-    private Scanner in = new Scanner(System.in);
+    private  User user;
+    private  int key;
+    private  Scanner in = new Scanner(System.in);
     public ClientWork(User user){
         this.user = user;
     }
 
-    public void work()throws SQLException{
+    public  void work()throws SQLException{
 
         System.out.println("<---------- User Menu ---------->");
         System.out.println("1. Control Panel");
@@ -42,10 +46,11 @@ public class ClientWork extends Menu {
         }
     }
 
-    public void controllPanel()throws SQLException{
+    public  void controllPanel()throws SQLException{
         int key;
         System.out.println("<------ Personal data ------>");
-        user.showUserData();
+       // user.showUserData();
+        Show.showUserData(user);
         System.out.println("1. Change login");
         System.out.println("2. Change email");
         System.out.println("3. Change password");
@@ -72,14 +77,18 @@ public class ClientWork extends Menu {
         }
     }
 
-    public void createPost()throws SQLException{
+    public  void createPost( )throws SQLException{
         user.addPost();
         System.out.println("Post is created");
         work();
     }
 
-    public void showAllPosts()throws SQLException{
-        user.showAllPosts();
+    public void showAllPosts( )throws SQLException{
+        //user.showAllPosts();
+        Show.showAllPosts(user);
+//        java.util.List<Post> posts = Factory.getInstance().getPostDAO().getAllPosts();
+//        for (Post post: posts)
+//             post.showPost();
         work();
     }
 }

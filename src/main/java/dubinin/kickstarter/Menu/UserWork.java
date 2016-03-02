@@ -12,7 +12,7 @@ public class UserWork {
         this.user = this.user;
     }
 
-    public void work(){
+    public void work( ){
 
 
     }
