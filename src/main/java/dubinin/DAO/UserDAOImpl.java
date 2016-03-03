@@ -61,6 +61,22 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
+    public User getUserByEmail(String email)throws SQLException
+    {
+        Session session = null;
+        User user = null;
+        try{
+            session = HibernateUtil.getSessionFactory().openSession();
+            Criteria criteria = session.createCriteria(User.class);
+            user = (User)criteria.add(Restrictions.eq("email", email)).uniqueResult();
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
+        } finally{
+            if (session != null && session.isOpen()) session.close();
+        }
+        return user;
+    }
+
     public List getAllUsers() throws SQLException {
         Session session = null;
         List<User> users = new ArrayList<User>();

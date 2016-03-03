@@ -132,16 +132,50 @@ public class User {
         this.registrationDate = registrationDate;
     }
 
-    public void registration(){
+    public void registration() throws SQLException{
         Scanner in = new Scanner(System.in);
+        String line;
         System.out.println("Name: ");
         setName(in.nextLine());
+
         System.out.println("Surname: ");
         setSurname(in.nextLine());
+
         System.out.println("Email: ");
-        setEmail(in.nextLine());
+        while (true){
+            line = in.nextLine();
+            if (Factory.getInstance().getUserDAO().getUserByEmail(line) != null)
+            {
+                System.out.println("This email is already registered");
+                System.out.println("Email: ");
+                continue;
+            }
+            break;
+        }
+        setEmail(line);
+
         System.out.println("Login: ");
-        setLogin(in.nextLine());
+        while (true)
+        {
+            line = in.nextLine();
+            if (Factory.getInstance().getUserDAO().getUserByLogin(line) != null)
+            {
+                System.out.println("This login is already registered");
+                System.out.println("Login: ");
+                continue;
+            }
+            break;
+        }
+        setLogin(line);
+
+//        line = in.nextLine();
+//        if (Factory.getInstance().getUserDAO().getUserByLogin(line) != null){
+//            System.out.println("This login is already registered");
+//            registration();
+//        }
+//        else
+//            setLogin(line);
+
         System.out.println("Password: ");
         setPassword(in.nextLine());
         //password = System.console().readPassword();
