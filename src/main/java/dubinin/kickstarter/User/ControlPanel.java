@@ -1,5 +1,8 @@
 package dubinin.kickstarter.User;
 
+import dubinin.DAO.Factory;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -15,24 +18,27 @@ public class ControlPanel {
         this.user = user;
     }
 
-    public void changeLogin(){
+    public void changeLogin() throws SQLException{
 
         System.out.println("Enter new login: ");
         newValue = in.nextLine();
         user.setLogin(newValue);
+        Factory.getInstance().getUserDAO().updateUser(user);
     }
 
-    public void changeEmail(){
+    public void changeEmail() throws SQLException{
 
         System.out.println("Enter new email: ");
         newValue = in.nextLine();
         user.setEmail(newValue);
+        Factory.getInstance().getUserDAO().updateUser(user);
     }
 
-    public void changePassword(){
+    public void changePassword() throws SQLException{
 
         System.out.println("Enter new password: ");
         newValue = in.nextLine();
         user.setPassword(newValue);
+        Factory.getInstance().getUserDAO().updateUser(user);
     }
 }

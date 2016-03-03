@@ -53,6 +53,7 @@ public class User {
     private Calendar registrationDate;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @OneToMany
     private List<Post> post = new ArrayList<Post>();
 
     public User(){

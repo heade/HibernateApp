@@ -51,11 +51,19 @@ public class Menu {
         password = input.nextLine();
 
         User u = Factory.getInstance().getUserDAO().getUserByLogin(login);
-        if (u.getPassword().equals(password))
-            user = u;
+        if (u != null)
+            if (u.getPassword().equals(password))
+                user = u;
+            else {
+                System.out.println("Wrong login or password");
+                run();
+            }
+        else {
+            System.out.println("Wrong login or password");
+            run();
+        }
 
         System.out.println("Login is success");
-        System.out.println(user.getEmail());
         if (u.getRole() == Roles.ROLE_CLIENT)
            new ClientWork(user).work();
         else if (u.getRole() == Roles.ROLE_USER)
