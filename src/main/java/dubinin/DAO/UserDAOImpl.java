@@ -2,7 +2,9 @@ package dubinin.DAO;
 
 import dubinin.kickstarter.User.User;
 import dubinin.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -48,7 +50,9 @@ public class UserDAOImpl implements UserDAO {
         User user = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
-            user = (User)session.load(User.class, login);
+            Criteria criteria = session.createCriteria(User.class);
+            //user = (User)session.load(User.class, login);
+            user = (User)criteria.add(Restrictions.eq("login", login)).uniqueResult();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
         } finally{
@@ -64,7 +68,7 @@ public class UserDAOImpl implements UserDAO {
             session = HibernateUtil.getSessionFactory().openSession();
             users = session.createCriteria(User.class).list();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "������ I/O", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error I/O", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

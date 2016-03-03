@@ -55,7 +55,7 @@ public class Menu {
             user = u;
 
         System.out.println("Login is success");
-
+        System.out.println(user.getEmail());
         if (u.getRole() == Roles.ROLE_CLIENT)
            new ClientWork(user).work();
         else if (u.getRole() == Roles.ROLE_USER)
