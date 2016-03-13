@@ -11,8 +11,8 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="dubinin.kickstarter.User.User"/>
-        <mapping class="dubinin.kickstarter.User.UserRole" />
-        <mapping class="dubinin.kickstarter.Post.Post" />
+        <mapping class="dubinin.kickstarter.entity.User"/>
+        <mapping class="dubinin.kickstarter.entity.UserRole" />
+        <mapping class="dubinin.kickstarter.entity.Post" />
     </session-factory>
 </hibernate-configuration>
