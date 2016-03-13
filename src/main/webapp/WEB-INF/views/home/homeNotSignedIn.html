@@ -15,12 +15,12 @@
         <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
     </th:block>
     <div class="text-center">
-        <h1>Aimer.com</h1>
+        <h1>Kickstarter</h1>
         <p>
             <a href="/signup" th:href="@{/signup}" class="btn btn-success btn-lg">Зарегистрироватся</a>
         </p>
     </div>
-    <div th:replace="fragments/footer :: footer">&copy; 2015 kolyan production</div>
+    <div th:replace="fragments/footer :: footer">&copy; </div>
 </div>
 </body>
 </html>

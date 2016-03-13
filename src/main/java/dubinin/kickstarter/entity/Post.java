@@ -1,6 +1,6 @@
 package dubinin.kickstarter.entity;
 
-import com.sun.istack.internal.NotNull;
+
 import dubinin.kickstarter.entity.User;
 
 import java.util.Calendar;
@@ -34,7 +34,6 @@ public class Post {
     private Calendar date;
 
     @Column(name = "text")
-    @NotNull
     private String text;
 
     public Post() {

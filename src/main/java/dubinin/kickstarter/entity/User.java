@@ -1,17 +1,15 @@
 package dubinin.kickstarter.entity;
-import com.sun.istack.internal.NotNull;
-import dubinin.kickstarter.DAO.Factory;
+
 import dubinin.kickstarter.common.KeyUtil;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Created by Daniel on 28.02.2016.
@@ -27,23 +25,18 @@ public class User {
     private Long id;
 
     @Column(name = "name")
-    @NotNull
     private String name;
 
     @Column(name = "surname")
-    @NotNull
     private String surname;
 
     @Column(name = "login")
-    @NotNull
     private String login;
 
     @Column(name = "password")
-    @NotNull
     private String password;
 
     @Column(name = "email")
-    @NotNull
     private String email;
 
     @JoinColumn(name = "role")
